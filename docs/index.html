@@ -21,10 +21,13 @@
             <div class="commentary" id="commentary"></div>
 
             <div class="footer">
+                <button class="share-btn" onclick="shareLink()">🔗 말씀 공유하기</button>
                 <div class="cross">✝</div>
             </div>
         </div>
     </div>
+
+    <div class="toast" id="toast"></div>
 
     <script>
         // 해설 데이터
@@ -68,6 +71,56 @@
             document.getElementById('title').textContent = verse.title;
             document.getElementById('content').textContent = verse.content;
             document.getElementById('commentary').textContent = verse.commentary;
+        }
+
+        // 링크 복사 & 공유
+        function shareLink() {
+            const url = 'https://nfc-keyring.vercel.app/';
+
+            // 클립보드에 복사
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url)
+                    .then(() => {
+                        showToast('링크가 복사되었습니다 ✅');
+                    })
+                    .catch(() => {
+                        // 폴백: 구식 방법
+                        fallbackCopy(url);
+                    });
+            } else {
+                // 폴백: 구식 방법
+                fallbackCopy(url);
+            }
+        }
+
+        // 폴백 복사 방법 (구식 브라우저용)
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                document.execCommand('copy');
+                showToast('링크가 복사되었습니다 ✅');
+            } catch (err) {
+                showToast('복사 실패. 다시 시도해주세요.');
+            }
+
+            document.body.removeChild(textarea);
+        }
+
+        // 토스트 메시지 표시
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
         }
 
         init();
