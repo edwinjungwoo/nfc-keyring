@@ -107,28 +107,6 @@ body {
     color: #8b6f47;
 }
 
-/* 공유 버튼 */
-.share-btn {
-    width: 100%;
-    padding: 16px 24px;
-    background: linear-gradient(135deg, #8b6f47 0%, #6b5638 100%);
-    color: #fff4e6;
-    border: none;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
-    cursor: pointer;
-    margin-bottom: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: all 0.3s;
-}
-
-.share-btn:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
 /* 토스트 알림 */
 .toast {
     position: fixed;
