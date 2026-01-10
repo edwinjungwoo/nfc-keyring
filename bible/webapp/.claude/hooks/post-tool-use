@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Claude Code - Post Tool Use Hook
+# 도구 사용 후 알림 보내기
+
+TOOL_NAME="$1"
+STATUS="$2"
+
+# 특정 도구들에 대해서만 알림 (원하시면 조건 수정 가능)
+NOTIFY_TOOLS=("Bash" "Write" "Edit" "Task")
+
+# 도구가 알림 대상인지 확인
+should_notify=false
+for tool in "${NOTIFY_TOOLS[@]}"; do
+    if [[ "$TOOL_NAME" == "$tool" ]]; then
+        should_notify=true
+        break
+    fi
+done
+
+if [ "$should_notify" = true ]; then
+    if [ "$STATUS" = "success" ]; then
+        # 성공 알림
+        if command -v osascript >/dev/null 2>&1; then
+            osascript -e 'display notification "'"$TOOL_NAME"' completed successfully" with title "✅ Claude Code"'
+        elif command -v notify-send >/dev/null 2>&1; then
+            notify-send '✅ Claude Code' "$TOOL_NAME completed successfully"
+        fi
+
+        # 성공 사운드 (조용하게)
+        if command -v afplay >/dev/null 2>&1; then
+            afplay /System/Library/Sounds/Tink.aiff &
+        fi
+    else
+        # 실패 알림
+        if command -v osascript >/dev/null 2>&1; then
+            osascript -e 'display notification "'"$TOOL_NAME"' failed" with title "⚠️ Claude Code"'
+        elif command -v notify-send >/dev/null 2>&1; then
+            notify-send '⚠️ Claude Code' "$TOOL_NAME failed"
+        fi
+
+        # 실패 사운드
+        if command -v afplay >/dev/null 2>&1; then
+            afplay /System/Library/Sounds/Basso.aiff &
+        fi
+    fi
+fi

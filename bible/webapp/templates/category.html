@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category }} - 성경 NFC 키링</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✝️</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✝ {{ category }}의 말씀 ✝</h1>
+        </div>
+
+        {% if verse %}
+        <div style="text-align: center;">
+            <span class="category-tag">{{ verse.category }}</span>
+        </div>
+
+        <div class="verse-section">
+            <div class="verse-reference">
+                {{ verse.reference }}
+            </div>
+
+            <div class="verse-content">
+                {{ verse.content }}
+            </div>
+
+            {% if verse.description %}
+            <div class="description">
+                "{{ verse.description }}"
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="cross-decoration">✝</div>
+
+        <div class="button-group">
+            <a href="/" class="btn btn-primary">오늘의 말씀</a>
+            <a href="/category/{{ category }}" class="btn">새로고침</a>
+            <a href="/random" class="btn">랜덤 말씀</a>
+        </div>
+
+        <div class="category-grid">
+            <a href="/category/위로" class="category-card">위로</a>
+            <a href="/category/감사" class="category-card">감사</a>
+            <a href="/category/평안" class="category-card">평안</a>
+            <a href="/category/믿음" class="category-card">믿음</a>
+            <a href="/category/소망" class="category-card">소망</a>
+            <a href="/category/사랑" class="category-card">사랑</a>
+            <a href="/category/축복" class="category-card">축복</a>
+        </div>
+
+        {% else %}
+        <div class="error-message">
+            해당 카테고리의 말씀을 찾을 수 없습니다.
+        </div>
+        {% endif %}
+
+        <div class="footer">
+            하나님의 말씀은 살아있고 활력이 있어<br>
+            좌우에 날선 어떤 검보다도 예리하다<br>
+            - 히브리서 4:12 -
+        </div>
+    </div>
+</body>
+</html>
