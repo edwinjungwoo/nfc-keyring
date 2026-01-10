@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘의 말씀 - 성경 NFC 키링</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✝️</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✝ 오늘의 말씀 ✝</h1>
+            <div class="date" id="today"></div>
+        </div>
+
+        <div id="verse-container">
+            <div style="text-align: center;">
+                <span class="category-tag" id="category"></span>
+            </div>
+
+            <div class="verse-section">
+                <div class="verse-reference" id="reference"></div>
+                <div class="verse-content" id="content"></div>
+                <div class="description" id="description"></div>
+            </div>
+
+            <div class="cross-decoration">✝</div>
+
+            <div class="button-group">
+                <button onclick="loadRandomVerse()" class="btn">다른 말씀 보기</button>
+                <button onclick="shareVerse()" class="btn">말씀 공유하기</button>
+            </div>
+
+            <div class="category-grid">
+                <button onclick="loadCategoryVerse('위로')" class="category-card">위로</button>
+                <button onclick="loadCategoryVerse('감사')" class="category-card">감사</button>
+                <button onclick="loadCategoryVerse('평안')" class="category-card">평안</button>
+                <button onclick="loadCategoryVerse('믿음')" class="category-card">믿음</button>
+                <button onclick="loadCategoryVerse('소망')" class="category-card">소망</button>
+                <button onclick="loadCategoryVerse('사랑')" class="category-card">사랑</button>
+                <button onclick="loadCategoryVerse('축복')" class="category-card">축복</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            하나님의 말씀은 살아있고 활력이 있어<br>
+            좌우에 날선 어떤 검보다도 예리하다<br>
+            - 히브리서 4:12 -
+        </div>
+    </div>
+
+    <script>
+        let verses = [];
+        let currentVerse = null;
+
+        // 날짜를 YYYYMMDD 형식의 숫자로 변환
+        function getDateSeed() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            return parseInt(year + month + day);
+        }
+
+        // 날짜 기반 시드로 일관된 랜덤 인덱스 생성
+        function getDailyIndex(seed, max) {
+            // 간단한 해시 함수
+            let hash = seed;
+            hash = ((hash << 5) - hash) + seed;
+            hash = hash & hash;
+            return Math.abs(hash) % max;
+        }
+
+        // 오늘의 말씀 로드
+        function loadDailyVerse() {
+            const seed = getDateSeed();
+            const index = getDailyIndex(seed, verses.length);
+            currentVerse = verses[index];
+            displayVerse(currentVerse);
+        }
+
+        // 랜덤 말씀 로드
+        function loadRandomVerse() {
+            const randomIndex = Math.floor(Math.random() * verses.length);
+            currentVerse = verses[randomIndex];
+            displayVerse(currentVerse);
+        }
+
+        // 카테고리별 말씀 로드
+        function loadCategoryVerse(category) {
+            const categoryVerses = verses.filter(v => v.category === category);
+            if (categoryVerses.length > 0) {
+                const randomIndex = Math.floor(Math.random() * categoryVerses.length);
+                currentVerse = categoryVerses[randomIndex];
+                displayVerse(currentVerse);
+            }
+        }
+
+        // 말씀 표시
+        function displayVerse(verse) {
+            document.getElementById('category').textContent = verse.category;
+            document.getElementById('reference').textContent = verse.reference;
+            document.getElementById('content').textContent = verse.content;
+            document.getElementById('description').textContent = `"${verse.description}"`;
+        }
+
+        // 오늘 날짜 표시
+        function displayToday() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            document.getElementById('today').textContent = `${year}년 ${month}월 ${day}일`;
+        }
+
+        // 말씀 공유
+        function shareVerse() {
+            if (!currentVerse) return;
+
+            const text = `${currentVerse.reference}\n\n${currentVerse.content}\n\n🙏 오늘의 말씀`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: '오늘의 말씀',
+                    text: text
+                }).catch((error) => console.log('공유 취소됨'));
+            } else {
+                // 복사 기능 폴백
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('말씀이 복사되었습니다!\n카카오톡이나 문자로 공유해보세요 💕');
+                }).catch(() => {
+                    alert('복사에 실패했습니다. 브라우저 설정을 확인해주세요.');
+                });
+            }
+        }
+
+        // 초기화
+        async function init() {
+            try {
+                const response = await fetch('verses.json');
+                verses = await response.json();
+                displayToday();
+                loadDailyVerse();
+            } catch (error) {
+                console.error('말씀을 불러오는데 실패했습니다:', error);
+                document.getElementById('verse-container').innerHTML =
+                    '<div class="error-message">말씀을 불러올 수 없습니다.</div>';
+            }
+        }
+
+        // 페이지 로드 시 실행
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
