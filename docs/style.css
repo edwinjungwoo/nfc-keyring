@@ -16,10 +16,9 @@ body {
     background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 100%);
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 60px 20px 20px;
+    padding: 20px;
     line-height: 1.9;
 }
 
@@ -31,10 +30,9 @@ body {
 .card {
     background: #fff;
     border-radius: 24px;
-    padding: 48px;
+    padding: 40px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.12);
     border: 3px solid #d4a574;
-    margin-top: 12px;
 }
 
 .header {
@@ -58,17 +56,6 @@ body {
     border-radius: 20px;
     font-size: 16px;
     font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.category:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(139, 111, 71, 0.3);
-}
-
-.category:active {
-    transform: scale(0.98);
 }
 
 .reference {
@@ -177,48 +164,6 @@ body {
     }
 }
 
-/* 날짜 네비게이션 */
-.date-nav {
-    position: fixed;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 8px 16px;
-    border-radius: 24px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-}
-
-.nav-btn {
-    padding: 10px 16px;
-    background: linear-gradient(135deg, #8b6f47 0%, #6b5638 100%);
-    color: #fff4e6;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
-    cursor: pointer;
-    transition: all 0.3s;
-    min-width: 48px;
-}
-
-.nav-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.nav-btn:active {
-    transform: translateY(0);
-}
-
-.today-btn {
-    background: linear-gradient(135deg, #d4a574 0%, #8b6f47 100%);
-}
-
 /* 플로팅 공유 버튼 */
 .floating-share-btn {
     position: fixed;
@@ -251,10 +196,6 @@ body {
 
 /* 모바일 반응형 */
 @media (max-width: 480px) {
-    body {
-        padding: 70px 16px 16px;
-    }
-
     .card {
         padding: 28px;
     }
@@ -271,18 +212,6 @@ body {
         font-size: 18px;
     }
 
-    .date-nav {
-        top: 8px;
-        padding: 6px 12px;
-        gap: 6px;
-    }
-
-    .nav-btn {
-        padding: 8px 12px;
-        font-size: 14px;
-        min-width: 42px;
-    }
-
     .floating-share-btn {
         width: 54px;
         height: 54px;
@@ -295,7 +224,7 @@ body {
 /* 작은 화면 추가 최적화 */
 @media (max-width: 360px) {
     body {
-        padding: 70px 12px 12px;
+        padding: 12px;
     }
 
     .card {
@@ -305,28 +234,17 @@ body {
     .verse-content {
         font-size: 20px;
     }
-
-    .date-nav {
-        padding: 6px 10px;
-    }
-
-    .nav-btn {
-        padding: 6px 10px;
-        font-size: 13px;
-        min-width: 38px;
-    }
 }
 
 /* 가로 모드 최적화 */
 @media (max-height: 600px) and (orientation: landscape) {
     body {
-        padding: 80px 20px 20px;
+        padding: 20px;
         justify-content: flex-start;
     }
 
     .card {
         padding: 24px;
-        margin-top: 0;
     }
 
     .header {
