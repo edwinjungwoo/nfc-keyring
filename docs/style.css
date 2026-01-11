@@ -96,6 +96,56 @@ body {
     margin-bottom: 32px;
 }
 
+/* 스토리텔링 섹션 */
+.storytelling-section {
+    margin-bottom: 32px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #8b6f47;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e8d5c4;
+}
+
+.storytelling {
+    font-size: 19px;
+    color: #4a4a4a;
+    line-height: 2;
+    text-align: justify;
+}
+
+/* 묵상 질문 섹션 */
+.meditation-section {
+    margin-bottom: 32px;
+}
+
+.meditation {
+    font-size: 18px;
+    color: #3a2f1f;
+}
+
+.meditation-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.meditation-list li {
+    padding: 16px;
+    margin-bottom: 12px;
+    background: #fffef9;
+    border-radius: 12px;
+    border-left: 4px solid #8b6f47;
+    line-height: 1.8;
+}
+
+.meditation-list li:last-child {
+    margin-bottom: 0;
+}
+
 .footer {
     text-align: center;
     padding-top: 24px;
@@ -190,6 +240,23 @@ body {
         font-size: 18px;
     }
 
+    .section-title {
+        font-size: 16px;
+    }
+
+    .storytelling {
+        font-size: 17px;
+    }
+
+    .meditation {
+        font-size: 16px;
+    }
+
+    .meditation-list li {
+        padding: 14px;
+        font-size: 16px;
+    }
+
     .floating-share-btn {
         width: 54px;
         height: 54px;
@@ -244,6 +311,27 @@ body {
     .commentary {
         font-size: 16px;
         line-height: 1.7;
+    }
+
+    .section-title {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .storytelling {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .meditation {
+        font-size: 15px;
+    }
+
+    .meditation-list li {
+        padding: 12px;
+        margin-bottom: 8px;
+        font-size: 15px;
+        line-height: 1.6;
     }
 
     .floating-share-btn {
