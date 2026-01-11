@@ -78,15 +78,6 @@ body {
     margin-bottom: 16px;
 }
 
-.title {
-    font-size: 28px;
-    color: #6b5638;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 32px;
-    line-height: 1.6;
-}
-
 .verse-content {
     font-size: 24px;
     color: #3a2f1f;
@@ -247,10 +238,6 @@ body {
         padding: 28px;
     }
 
-    .title {
-        font-size: 24px;
-    }
-
     .verse-content {
         font-size: 22px;
     }
@@ -310,11 +297,6 @@ body {
     .header {
         margin-bottom: 20px;
         padding-bottom: 16px;
-    }
-
-    .title {
-        font-size: 22px;
-        margin-bottom: 20px;
     }
 
     .verse-content {

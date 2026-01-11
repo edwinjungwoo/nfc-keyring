@@ -35,7 +35,6 @@
             document.getElementById('today').textContent = today;
             document.getElementById('category').textContent = verse.category;
             document.getElementById('reference').textContent = `${verse.book_name} ${verse.chapter}:${verse.verse}`;
-            document.getElementById('title').textContent = verse.title;
             document.getElementById('content').textContent = verse.content;
             // Storytelling 표시
             document.getElementById('storytelling').textContent = verse.storytelling;
