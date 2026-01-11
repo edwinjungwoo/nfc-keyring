@@ -1,7 +1,11 @@
-/* Google Fonts - 나눔명조 (Nanum Myeongjo) */
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+/* ============================================
+   오늘의 말씀 - 스타일시트
+   ============================================ */
 
-/* 또는 Noto Serif Korean */
+/* ============================================
+   1. 폰트 및 리셋
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap');
 
 * {
@@ -10,8 +14,10 @@
     box-sizing: border-box;
 }
 
+/* ============================================
+   2. 전체 레이아웃
+   ============================================ */
 body {
-    /* 나눔명조 우선, 없으면 Noto Serif, 없으면 시스템 기본 serif */
     font-family: 'Nanum Myeongjo', 'Noto Serif KR', 'Gungsuh', 'Batang', serif;
     background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 100%);
     min-height: 100vh;
@@ -35,6 +41,9 @@ body {
     border: 3px solid #d4a574;
 }
 
+/* ============================================
+   3. 헤더 영역
+   ============================================ */
 .header {
     text-align: center;
     margin-bottom: 32px;
@@ -58,6 +67,9 @@ body {
     font-weight: bold;
 }
 
+/* ============================================
+   4. 말씀 영역
+   ============================================ */
 .reference {
     font-size: 22px;
     color: #8b6f47;
@@ -88,15 +100,9 @@ body {
     font-weight: 500;
 }
 
-.commentary {
-    font-size: 20px;
-    color: #4a4a4a;
-    line-height: 2;
-    text-align: justify;
-    margin-bottom: 32px;
-}
-
-/* 스토리텔링 섹션 */
+/* ============================================
+   5. 스토리텔링 섹션
+   ============================================ */
 .storytelling-section {
     margin-bottom: 32px;
 }
@@ -117,7 +123,9 @@ body {
     text-align: justify;
 }
 
-/* 묵상 질문 섹션 */
+/* ============================================
+   6. 묵상 질문 섹션
+   ============================================ */
 .meditation-section {
     margin-bottom: 32px;
 }
@@ -146,6 +154,9 @@ body {
     margin-bottom: 0;
 }
 
+/* ============================================
+   7. 푸터
+   ============================================ */
 .footer {
     text-align: center;
     padding-top: 24px;
@@ -157,7 +168,41 @@ body {
     color: #8b6f47;
 }
 
-/* 토스트 알림 */
+/* ============================================
+   8. 플로팅 공유 버튼
+   ============================================ */
+.floating-share-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #8b6f47 0%, #6b5638 100%);
+    color: #fff4e6;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    transition: all 0.3s;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-share-btn:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.floating-share-btn:active {
+    transform: scale(0.95);
+}
+
+/* ============================================
+   9. 토스트 알림
+   ============================================ */
 .toast {
     position: fixed;
     bottom: 20px;
@@ -192,37 +237,11 @@ body {
     }
 }
 
-/* 플로팅 공유 버튼 */
-.floating-share-btn {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #8b6f47 0%, #6b5638 100%);
-    color: #fff4e6;
-    border: none;
-    border-radius: 50%;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-    transition: all 0.3s;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+/* ============================================
+   10. 반응형 디자인
+   ============================================ */
 
-.floating-share-btn:hover {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-}
-
-.floating-share-btn:active {
-    transform: scale(0.95);
-}
-
-/* 모바일 반응형 */
+/* 모바일 (480px 이하) */
 @media (max-width: 480px) {
     .card {
         padding: 28px;
@@ -234,10 +253,6 @@ body {
 
     .verse-content {
         font-size: 22px;
-    }
-
-    .commentary {
-        font-size: 18px;
     }
 
     .section-title {
@@ -266,7 +281,7 @@ body {
     }
 }
 
-/* 작은 화면 추가 최적화 */
+/* 작은 화면 (360px 이하) */
 @media (max-width: 360px) {
     body {
         padding: 12px;
@@ -306,11 +321,6 @@ body {
         font-size: 20px;
         margin-bottom: 24px;
         padding: 16px;
-    }
-
-    .commentary {
-        font-size: 16px;
-        line-height: 1.7;
     }
 
     .section-title {

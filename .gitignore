@@ -60,3 +60,11 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+
+# Project specific - temporary work files
+*.txt
+docs/*_step*.json
+docs/*_candidates*.json
+docs/verified_verses.json
+docs/failed_verses.json
+docs/verses_100.json
